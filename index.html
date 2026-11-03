@@ -8,17 +8,20 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
  margin:0;
  background:#0b1120;
  color:white;
  font-family:Arial,sans-serif;
 }
+
 header{
  text-align:center;
  padding:28px 10px;
  background:linear-gradient(135deg,#111827,#263b61);
 }
+
 .logo{
  font-size:35px;
  font-weight:900;
@@ -28,11 +31,18 @@ header{
  background-clip:text;
  animation:rainbow 5s linear infinite;
 }
+
 @keyframes rainbow{
  to{background-position:300%}
 }
-header p{color:#cbd5e1;font-size:12px}
+
+header p{
+ color:#cbd5e1;
+ font-size:12px;
+}
+
 .search{padding:15px}
+
 input{
  width:100%;
  padding:14px;
@@ -42,13 +52,17 @@ input{
  color:white;
  font-size:16px;
 }
+
 main{padding:10px 15px 35px}
+
 h2{font-size:20px}
+
 .grid{
  display:grid;
  grid-template-columns:repeat(2,1fr);
  gap:12px;
 }
+
 .category{
  min-height:110px;
  padding:15px 8px;
@@ -60,17 +74,42 @@ h2{font-size:20px}
  font-weight:bold;
  cursor:pointer;
 }
-.c1{background:#075985}
-.c2{background:#1d4ed8}
-.c3{background:#854d0e}
+
+.c1{background:linear-gradient(135deg,#075985,#0e7490)}
+.c2{background:linear-gradient(135deg,#1d4ed8,#4338ca)}
+.c3{background:linear-gradient(135deg,#854d0e,#ca8a04)}
+.c4{background:linear-gradient(135deg,#581c87,#9333ea)}
+
 .version{
- background:#1e293b;
- border:1px solid #334155;
- padding:18px;
- margin:12px 0;
- border-radius:12px;
+ padding:22px 15px;
+ margin:13px 0;
+ border-radius:14px;
  cursor:pointer;
+ border:1px solid #ffffff30;
+ box-shadow:0 4px 12px #0005;
+ transition:.3s;
 }
+
+.version:nth-child(4n+1){
+ background:linear-gradient(135deg,#075985,#0e7490);
+}
+.version:nth-child(4n+2){
+ background:linear-gradient(135deg,#6d28d9,#9333ea);
+}
+.version:nth-child(4n+3){
+ background:linear-gradient(135deg,#9a3412,#ea580c);
+}
+.version:nth-child(4n+4){
+ background:linear-gradient(135deg,#166534,#15803d);
+}
+
+.version:active{transform:scale(.97)}
+
+.version b{
+ font-size:21px;
+ color:white;
+}
+
 button{
  border:0;
  border-radius:9px;
@@ -78,13 +117,21 @@ button{
  font-weight:bold;
  cursor:pointer;
 }
-.back{background:#475569;color:white}
+
+.back{
+ background:#475569;
+ color:white;
+}
+
 .name{
  text-align:center;
  font-size:25px;
  margin:22px 0;
  color:#facc15;
 }
+
+/* VIDEO AREA */
+
 .video-box{
  position:relative;
  width:100%;
@@ -93,37 +140,58 @@ button{
  border-radius:12px;
  overflow:hidden;
 }
+
 #player{
  width:100%;
  height:100%;
 }
+
+/* 3D TOM-STYLE CARTOON HAND */
+
 .hand{
  position:absolute;
- top:42%;
- left:46%;
- font-size:55px;
  z-index:5;
+ top:29%;
+ left:50%;
+ width:105px;
+ height:145px;
+ transform:translateX(-50%);
  pointer-events:none;
- animation:handmove 1s infinite;
- filter:drop-shadow(0 3px 5px black);
+ animation:tomHand 1.1s ease-in-out infinite;
+ filter:drop-shadow(5px 9px 5px #000b);
 }
-@keyframes handmove{
- 0%,100%{transform:translateY(0) scale(1)}
- 50%{transform:translateY(-12px) scale(1.15)}
+
+.hand svg{
+ width:100%;
+ height:100%;
+ overflow:visible;
 }
+
+@keyframes tomHand{
+ 0%,100%{
+  transform:translate(-50%,0) rotate(-5deg);
+ }
+ 50%{
+  transform:translate(-50%,13px) rotate(4deg);
+ }
+}
+
 .tap-text{
  position:absolute;
  bottom:12px;
  left:0;
  right:0;
  text-align:center;
- z-index:5;
+ z-index:6;
  pointer-events:none;
  color:white;
  font-size:14px;
  font-weight:bold;
- text-shadow:0 2px 5px black;
+ text-shadow:0 2px 6px black;
+ background:#0008;
+ padding:8px;
 }
+
 .instruction{
  background:#172554;
  border:1px solid #2563eb;
@@ -131,18 +199,21 @@ button{
  padding:15px;
  margin-top:15px;
  text-align:center;
- line-height:1.7;
+ line-height:1.8;
 }
-.instruction .english{
+
+.english{
  color:#facc15;
  font-weight:bold;
  font-size:16px;
 }
-.instruction .kannada{
+
+.kannada{
  color:white;
  font-size:15px;
  font-weight:bold;
 }
+
 .timer{
  background:#1e293b;
  padding:17px;
@@ -150,14 +221,22 @@ button{
  border-radius:12px;
  text-align:center;
 }
+
 #clock{
  font-size:35px;
  font-weight:bold;
  color:#facc15;
 }
-#progress{color:#cbd5e1;font-size:13px}
+
+#progress{
+ color:#cbd5e1;
+ font-size:13px;
+}
+
 #status{font-weight:bold}
+
 .hidden{display:none}
+
 footer{
  text-align:center;
  color:#94a3b8;
@@ -183,64 +262,165 @@ footer{
 <main>
 
 <!-- HOME PAGE -->
+
 <section id="home">
- <h2>BUSSID 👇</h2>
- <div class="grid" id="categories"></div>
+
+<h2>BUSSID 👇</h2>
+
+<div class="grid" id="categories"></div>
+
 </section>
 
 <!-- VERSION PAGE -->
+
 <section id="versions" class="hidden">
- <button class="back" onclick="goHome()">← BACK</button>
- <h2 id="categoryTitle"></h2>
- <div id="versionList"></div>
+
+<button class="back" onclick="goHome()">← BACK</button>
+
+<h2 id="categoryTitle"></h2>
+
+<div id="versionList"></div>
+
 </section>
 
 <!-- MOD DETAILS PAGE -->
+
 <section id="details" class="hidden">
 
- <button class="back" onclick="goVersions()">← BACK</button>
+<button class="back" onclick="goVersions()">← BACK</button>
 
- <h2 class="name" id="modName"></h2>
+<h2 class="name" id="modName"></h2>
 
- <!-- VIDEO -->
- <div class="video-box">
+<!-- YOUTUBE VIDEO -->
 
-  <div id="player"></div>
+<div class="video-box">
 
-  <div class="hand" id="hand">👆</div>
+ <div id="player"></div>
 
-  <div class="tap-text" id="tapText">
-   👆 TAP HERE TO PLAY VIDEO
-  </div>
+ <!-- 3D CARTOON HAND -->
+ <div class="hand" id="hand">
+
+ <svg viewBox="0 0 120 170"
+ xmlns="http://www.w3.org/2000/svg">
+
+ <defs>
+
+  <linearGradient id="glove" x1="0" y1="0" x2="1" y2="1">
+   <stop offset="0%" stop-color="#ffffff"/>
+   <stop offset="35%" stop-color="#f1f5f9"/>
+   <stop offset="70%" stop-color="#cbd5e1"/>
+   <stop offset="100%" stop-color="#64748b"/>
+  </linearGradient>
+
+  <linearGradient id="finger" x1="0" y1="0" x2="1" y2="0">
+   <stop offset="0%" stop-color="#ffffff"/>
+   <stop offset="55%" stop-color="#f1f5f9"/>
+   <stop offset="100%" stop-color="#94a3b8"/>
+  </linearGradient>
+
+ </defs>
+
+ <!-- ARM -->
+ <path d="M38 145 Q37 125 43 111
+ Q58 99 75 112
+ L83 150 Z"
+ fill="url(#glove)"
+ stroke="#475569"
+ stroke-width="2"/>
+
+ <!-- MAIN PALM -->
+ <path d="M35 111
+ Q25 100 29 85
+ Q33 77 42 81
+ L43 35
+ Q43 21 52 20
+ Q62 20 62 35
+ L63 69
+ L67 16
+ Q69 4 79 7
+ Q88 9 87 22
+ L84 73
+ Q91 56 98 64
+ Q105 70 98 86
+ L89 112
+ Q83 137 62 140
+ Q42 140 35 111Z"
+ fill="url(#glove)"
+ stroke="#475569"
+ stroke-width="2.5"/>
+
+ <!-- FINGER HIGHLIGHTS -->
+ <path d="M50 31 L51 67"
+ stroke="white" stroke-width="4"
+ stroke-linecap="round"/>
+
+ <path d="M74 17 L74 55"
+ stroke="white" stroke-width="4"
+ stroke-linecap="round"/>
+
+ <!-- THUMB -->
+ <path d="M34 90 Q17 72 12 83
+ Q8 95 30 112"
+ fill="url(#finger)"
+ stroke="#64748b"
+ stroke-width="2"/>
+
+ <!-- GLOVE CUFF -->
+ <path d="M35 126 Q57 139 85 120
+ L92 140 Q62 161 32 143 Z"
+ fill="#e2e8f0"
+ stroke="#475569"
+ stroke-width="2"/>
+
+ <!-- CUFF SHINE -->
+ <path d="M42 135 Q61 147 82 132"
+ fill="none"
+ stroke="white"
+ stroke-width="4"
+ stroke-linecap="round"/>
+
+ </svg>
 
  </div>
 
- <!-- ENGLISH AND KANNADA INSTRUCTIONS -->
- <div class="instruction">
-  <div class="english">
-   WATCH 30 SECONDS VIDEO AND AFTER UNLOCK YOUR MOD
-  </div>
-
-  <div class="kannada">
-   ಮೊದಲು ಮೇಲಿನ ವಿಡಿಯೋವನ್ನು 30 ಸೆಕೆಂಡ್ ವೀಕ್ಷಿಸಿ.
-   ನಂತರ ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಲಿಂಕ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆರೆಯುತ್ತದೆ.
-  </div>
+ <div class="tap-text" id="tapText">
+  TAP VIDEO TO START WATCHING
  </div>
 
- <!-- TIMER -->
- <div class="timer">
-  <p id="status">🔒 WAITING FOR VIDEO PLAY</p>
+</div>
 
-  <div id="clock">00:30</div>
+<!-- INSTRUCTIONS -->
 
-  <p id="progress">
-   Video Watch Time: 0 / 30 Seconds
-  </p>
+<div class="instruction">
+
+ <div class="english">
+ WATCH 30 SECONDS VIDEO AND AFTER UNLOCK YOUR MOD
  </div>
 
- <p style="text-align:center;color:#facc15;font-size:13px">
-  Please Do Not Pause Or Skip The Video
+ <div class="kannada">
+ ಮೊದಲು ಮೇಲಿನ ವಿಡಿಯೋವನ್ನು 30 ಸೆಕೆಂಡ್ ವೀಕ್ಷಿಸಿ.
+ ನಂತರ ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಲಿಂಕ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆರೆಯುತ್ತದೆ.
+ </div>
+
+</div>
+
+<!-- TIMER -->
+
+<div class="timer">
+
+ <p id="status">🔒 WAITING FOR VIDEO PLAY</p>
+
+ <div id="clock">00:30</div>
+
+ <p id="progress">
+ Video Watch Time: 0 / 30 Seconds
  </p>
+
+</div>
+
+<p style="text-align:center;color:#facc15;font-size:13px">
+ PLEASE DO NOT PAUSE OR SKIP THE VIDEO
+</p>
 
 </section>
 
@@ -252,49 +432,64 @@ footer{
 
 <script>
 
-// ======================================
+// ===================================
 // ADD YOUR MODS HERE
-// ======================================
+// ===================================
 
-const mods = [
+const mods=[
 
- {
-  id:"steering-v4-5-2",
-  category:"STEERING WHEEL MOD",
-  version:"V4.5.2",
-  name:"NEW STEERING WHEEL MOD",
-  video:"eZfmXlZqSEU",
-  download:"https://sharemods.com/1ysqyf4rvjgz/Bussid_V4.5.2_Top_4_Steering_Wheel_Mod.7z.html"
- },
+{
+ id:"steering-v4-6",
+ category:"STEERING WHEEL MOD",
+ version:"V4.6",
+ name:"NEW STEERING WHEEL MOD",
+ video:"PknC64-Q9vI",
+ download:"https://sharemods.com/0miatohmdtg5/BUSSID_v4.6_REALISTIC_RAIN________________MOD.7z.html"
+},
 
- {
-  id:"rain-v4-6",
-  category:"REALISTIC RAIN MOD",
-  version:"V4.6",
-  name:"REALISTIC RAIN MOD V4.6",
-  video:"YOUR_YOUTUBE_VIDEO_ID",
-  download:"YOUR_SHAREMODS_LINK"
- },
+{
+ id:"rain-v4-6",
+ category:"REALISTIC RAIN MOD",
+ version:"V4.6",
+ name:"REALISTIC RAIN MOD V4.6",
+ video:"YOUR_YOUTUBE_VIDEO_ID",
+ download:"YOUR_SHAREMODS_LINK"
+},
 
- {
-  id:"wheel-v4-6",
-  category:"WHEEL CAP MOD",
-  version:"V4.6",
-  name:"NEW WHEEL CAP MOD",
-  video:"YOUR_YOUTUBE_VIDEO_ID",
-  download:"YOUR_SHAREMODS_LINK"
- }
+{
+ id:"wheel-v4-6",
+ category:"WHEEL CAP MOD",
+ version:"V4.6",
+ name:"NEW WHEEL CAP MOD",
+ video:"YOUR_YOUTUBE_VIDEO_ID",
+ download:"YOUR_SHAREMODS_LINK"
+},
+
+{
+ id:"garage-v4-6",
+ category:"GARAGE MOD",
+ version:"V4.6",
+ name:"NEW GARAGE MOD",
+ video:"YOUR_YOUTUBE_VIDEO_ID",
+ download:"YOUR_SHAREMODS_LINK"
+}
 
 ];
 
-// ======================================
+// ===================================
 // CATEGORIES
-// ======================================
+// ===================================
 
 const categoryData=[
- {name:"STEERING WHEEL MOD",emoji:"🛞",cls:"c1"},
- {name:"REALISTIC RAIN MOD",emoji:"🌧️",cls:"c2"},
- {name:"WHEEL CAP MOD",emoji:"⚙️",cls:"c3"}
+
+{name:"STEERING WHEEL MOD",emoji:"🛞",cls:"c1"},
+
+{name:"REALISTIC RAIN MOD",emoji:"🌧️",cls:"c2"},
+
+{name:"WHEEL CAP MOD",emoji:"⚙️",cls:"c3"},
+
+{name:"GARAGE MOD",emoji:"🏠",cls:"c4"}
+
 ];
 
 let selectedCategory="";
@@ -306,421 +501,485 @@ let lastTime=null;
 let unlocked=false;
 let redirecting=false;
 
-// ======================================
+// ===================================
 // PAGE CONTROL
-// ======================================
+// ===================================
 
 function show(id){
- ["home","versions","details"].forEach(x=>{
-  document.getElementById(x).classList.add("hidden");
- });
- document.getElementById(id).classList.remove("hidden");
-}
 
-function goHome(){
- stopTimer();
- destroyPlayer();
- show("home");
-}
+["home","versions","details"].forEach(x=>{
+ document.getElementById(x).classList.add("hidden");
+});
 
-function goVersions(){
- stopTimer();
- destroyPlayer();
- show("versions");
-}
-
-// ======================================
-// CATEGORY DISPLAY
-// ======================================
-
-function drawCategories(){
-
- document.getElementById("categories").innerHTML=
- categoryData.map(c=>`
-  <div class="category ${c.cls}"
-   onclick="openCategory('${c.name}')">
-   ${c.emoji} ${c.name}
-  </div>
- `).join("");
-
-}
-
-function openCategory(name){
-
- stopTimer();
- selectedCategory=name;
-
- document.getElementById("categoryTitle").textContent=name;
-
- renderVersions(
-  mods.filter(m=>m.category===name)
- );
-
- show("versions");
-}
-
-// ======================================
-// VERSION DISPLAY
-// ======================================
-
-function renderVersions(list){
-
- document.getElementById("versionList").innerHTML=
- list.length ? list.map(m=>`
-  <div class="version"
-   onclick="openMod('${m.id}')">
-   <b>${m.version}</b>
-   <br><br>
-   ${m.name}
-   <br><br>
-   <span style="color:#38bdf8">OPEN MOD →</span>
-  </div>
- `).join("") : "<p>No Mods Available Yet.</p>";
-
-}
-
-// ======================================
-// YOUTUBE API
-// ======================================
-
-function loadYouTubeAPI(){
-
- if(window.YT && window.YT.Player){
-  createPlayer();
-  return;
- }
-
- if(!document.getElementById("ytapi")){
-  const script=document.createElement("script");
-  script.id="ytapi";
-  script.src="https://www.youtube.com/iframe_api";
-  document.head.appendChild(script);
- }
-
-}
-
-window.onYouTubeIframeAPIReady=function(){
- if(selectedMod &&
- !document.getElementById("details").classList.contains("hidden")){
-  createPlayer();
- }
-};
-
-// ======================================
-// EXTRACT VIDEO ID
-// ======================================
-
-function getVideoId(value){
-
- if(!value)return "";
-
- try{
-  const url=new URL(value);
-
-  if(url.hostname.includes("youtu.be")){
-   return url.pathname.slice(1);
-  }
-
-  if(url.searchParams.get("v")){
-   return url.searchParams.get("v");
-  }
-
-  if(url.pathname.includes("/embed/")){
-   return url.pathname.split("/embed/")[1].split("/")[0];
-  }
-
- }catch(e){}
-
- return value;
-}
-
-// ======================================
-// OPEN MOD DETAILS
-// ======================================
-
-function openMod(id){
-
- stopTimer();
- destroyPlayer();
-
- selectedMod=mods.find(m=>m.id===id);
-
- if(!selectedMod)return;
-
- watchSeconds=0;
- lastTime=null;
- unlocked=false;
- redirecting=false;
-
- document.getElementById("modName").textContent=
- selectedMod.name;
-
- document.getElementById("clock").textContent="00:30";
-
- document.getElementById("status").textContent=
- "🔒 WAITING FOR VIDEO PLAY";
-
- document.getElementById("progress").textContent=
- "Video Watch Time: 0 / 30 Seconds";
-
- document.getElementById("hand").classList.remove("hidden");
- document.getElementById("tapText").classList.remove("hidden");
-
- show("details");
-
- loadYouTubeAPI();
-
-}
-
-// ======================================
-// CREATE YOUTUBE PLAYER
-// ======================================
-
-function createPlayer(){
-
- if(!window.YT || !YT.Player)return;
- if(!selectedMod)return;
-
- destroyPlayer();
-
- const videoId=getVideoId(selectedMod.video);
-
- if(!videoId || videoId==="YOUR_YOUTUBE_VIDEO_ID"){
-  document.getElementById("status").textContent=
-   "⚠️ PLEASE ADD YOUTUBE VIDEO ID";
-  return;
- }
-
- player=new YT.Player("player",{
-  width:"100%",
-  height:"100%",
-  videoId:videoId,
-
-  playerVars:{
-   autoplay:0,
-   controls:1,
-   rel:0,
-   playsinline:1
-  },
-
-  events:{
-   onReady:function(){
-    lastTime=null;
-   },
-
-   onStateChange:function(event){
-    handleVideoState(event);
-   },
-
-   onError:function(){
-    stopTimer();
-    document.getElementById("status").textContent=
-     "⚠️ VIDEO COULD NOT BE PLAYED";
-   }
-  }
-
- });
-
-}
-
-// ======================================
-// VIDEO PLAY / PAUSE
-// ======================================
-
-function handleVideoState(event){
-
- if(event.data===YT.PlayerState.PLAYING){
-
-  document.getElementById("hand").classList.add("hidden");
-  document.getElementById("tapText").classList.add("hidden");
-
-  document.getElementById("status").textContent=
-   "▶️ VIDEO PLAYING - PLEASE WATCH";
-
-  if(lastTime===null){
-   lastTime=player.getCurrentTime();
-  }
-
-  startTimer();
-
- }else{
-
-  stopTimer();
-
-  if(event.data===YT.PlayerState.PAUSED){
-   lastTime=null;
-   document.getElementById("status").textContent=
-    "⏸ VIDEO PAUSED - TIMER STOPPED";
-  }
-
- }
-
-}
-
-// ======================================
-// 30 SECOND WATCH TIMER
-// ======================================
-
-function startTimer(){
-
- if(timer || unlocked || redirecting)return;
-
- timer=setInterval(function(){
-
-  if(!player || !player.getCurrentTime)return;
-
-  if(player.getPlayerState()!==YT.PlayerState.PLAYING){
-   stopTimer();
-   return;
-  }
-
-  const current=player.getCurrentTime();
-
-  if(lastTime===null){
-   lastTime=current;
-   return;
-  }
-
-  const difference=current-lastTime;
-
-  // Count normal playback only.
-  // Large jumps are not counted.
-
-  if(difference>0 && difference<=1.3){
-   watchSeconds+=difference;
-  }
-
-  lastTime=current;
-
-  watchSeconds=Math.min(watchSeconds,30);
-
-  const remaining=Math.max(
-   0,Math.ceil(30-watchSeconds)
-  );
-
-  document.getElementById("clock").textContent=
-   "00:"+String(remaining).padStart(2,"0");
-
-  document.getElementById("progress").textContent=
-   "Video Watch Time: "+
-   Math.floor(watchSeconds)+
-   " / 30 Seconds";
-
-  if(watchSeconds>=30){
-   unlockAndRedirect();
-  }
-
- },500);
+document.getElementById(id).classList.remove("hidden");
 
 }
 
 function stopTimer(){
 
- if(timer){
-  clearInterval(timer);
-  timer=null;
- }
-
+if(timer){
+ clearInterval(timer);
+ timer=null;
 }
 
-// ======================================
-// AUTOMATIC SHAREMODS REDIRECT
-// ======================================
-
-function unlockAndRedirect(){
-
- if(unlocked || redirecting)return;
-
- unlocked=true;
- redirecting=true;
-
- stopTimer();
-
- document.getElementById("clock").textContent="UNLOCKED!";
-
- document.getElementById("status").textContent=
-  "✅ 30 SECONDS COMPLETED!";
-
- document.getElementById("progress").textContent=
-  "Opening Your ShareMods Download Link...";
-
- const link=selectedMod.download;
-
- if(!link ||
- !link.startsWith("https://sharemods.com/") ||
- link==="YOUR_SHAREMODS_LINK"){
-
-  redirecting=false;
-
-  document.getElementById("status").textContent=
-   "⚠️ PLEASE ADD VALID SHAREMODS LINK";
-
-  document.getElementById("progress").textContent=
-   "Download link is not configured.";
-
-  return;
- }
-
- // Automatically open in the same browser tab.
- // No download button click required.
-
- setTimeout(function(){
-  window.location.assign(link);
- },500);
-
 }
-
-// ======================================
-// DESTROY PLAYER
-// ======================================
 
 function destroyPlayer(){
 
- if(player){
-  try{
-   player.destroy();
-  }catch(e){}
-  player=null;
- }
+stopTimer();
+
+if(player){
+ try{player.destroy()}catch(e){}
+ player=null;
+}
 
 }
 
-// ======================================
-// SEARCH
-// ======================================
+function goHome(){
+
+destroyPlayer();
+show("home");
+
+}
+
+function goVersions(){
+
+destroyPlayer();
+show("versions");
+
+}
+
+// ===================================
+// CATEGORY DISPLAY
+// ===================================
+
+function drawCategories(){
+
+document.getElementById("categories").innerHTML=
+
+categoryData.map(c=>`
+
+<div class="category ${c.cls}"
+ onclick="openCategory('${c.name}')">
+
+ ${c.emoji} ${c.name}
+
+</div>
+
+`).join("");
+
+}
+
+function openCategory(name){
+
+destroyPlayer();
+
+selectedCategory=name;
+
+document.getElementById("categoryTitle").textContent=name;
+
+renderVersions(
+ mods.filter(m=>m.category===name)
+);
+
+show("versions");
+
+}
+
+// ===================================
+// VERSION DISPLAY
+// ===================================
+
+function renderVersions(list){
+
+document.getElementById("versionList").innerHTML=
+
+list.length ? list.map(m=>`
+
+<div class="version"
+ onclick="openMod('${m.id}')">
+
+ <b>📦 ${m.version}</b>
+
+ <p style="color:white;font-weight:bold">
+ ${m.name}
+ </p>
+
+ <span style="
+ background:#ffffff25;
+ padding:7px 13px;
+ border-radius:20px;
+ display:inline-block;
+ color:white;
+ font-size:12px;
+ font-weight:bold">
+ OPEN MOD →
+ </span>
+
+</div>
+
+`).join("") : "<p>No Mods Available Yet.</p>";
+
+}
+
+// ===================================
+// YOUTUBE API
+// ===================================
+
+function loadYouTubeAPI(){
+
+if(window.YT && window.YT.Player){
+ createPlayer();
+ return;
+}
+
+if(!document.getElementById("ytapi")){
+
+const script=document.createElement("script");
+
+script.id="ytapi";
+script.src="https://www.youtube.com/iframe_api";
+
+document.head.appendChild(script);
+
+}
+
+}
+
+window.onYouTubeIframeAPIReady=function(){
+
+if(selectedMod &&
+ !document.getElementById("details").classList.contains("hidden")){
+
+ createPlayer();
+
+}
+
+};
+
+// ===================================
+// VIDEO ID EXTRACTOR
+// ===================================
+
+function getVideoId(value){
+
+if(!value)return "";
+
+try{
+
+const url=new URL(value);
+
+if(url.hostname.includes("youtu.be")){
+ return url.pathname.slice(1);
+}
+
+if(url.searchParams.get("v")){
+ return url.searchParams.get("v");
+}
+
+if(url.pathname.includes("/embed/")){
+ return url.pathname.split("/embed/")[1].split("/")[0];
+}
+
+}catch(e){}
+
+return value;
+
+}
+
+// ===================================
+// OPEN MOD DETAILS
+// ===================================
+
+function openMod(id){
+
+destroyPlayer();
+
+selectedMod=mods.find(m=>m.id===id);
+
+if(!selectedMod)return;
+
+watchSeconds=0;
+lastTime=null;
+unlocked=false;
+redirecting=false;
+
+document.getElementById("modName").textContent=
+selectedMod.name;
+
+document.getElementById("clock").textContent="00:30";
+
+document.getElementById("status").textContent=
+"🔒 WAITING FOR VIDEO PLAY";
+
+document.getElementById("progress").textContent=
+"Video Watch Time: 0 / 30 Seconds";
+
+document.getElementById("hand").classList.remove("hidden");
+
+document.getElementById("tapText").classList.remove("hidden");
+
+show("details");
+
+loadYouTubeAPI();
+
+}
+
+// ===================================
+// CREATE YOUTUBE PLAYER
+// ===================================
+
+function createPlayer(){
+
+if(!window.YT || !YT.Player || !selectedMod)return;
+
+destroyPlayer();
+
+const videoId=getVideoId(selectedMod.video);
+
+if(!videoId || videoId==="YOUR_YOUTUBE_VIDEO_ID"){
+
+document.getElementById("status").textContent=
+"⚠️ ADD YOUTUBE VIDEO ID";
+
+return;
+
+}
+
+player=new YT.Player("player",{
+
+width:"100%",
+height:"100%",
+videoId:videoId,
+
+playerVars:{
+ autoplay:0,
+ controls:1,
+ rel:0,
+ playsinline:1
+},
+
+events:{
+
+onReady:function(){
+ lastTime=null;
+},
+
+onStateChange:function(event){
+ handleVideoState(event);
+},
+
+onError:function(){
+
+stopTimer();
+
+document.getElementById("status").textContent=
+"⚠️ VIDEO COULD NOT BE PLAYED";
+
+}
+
+}
+
+});
+
+}
+
+// ===================================
+// VIDEO PLAY / PAUSE
+// ===================================
+
+function handleVideoState(event){
+
+if(event.data===YT.PlayerState.PLAYING){
+
+document.getElementById("hand").classList.add("hidden");
+
+document.getElementById("tapText").classList.add("hidden");
+
+document.getElementById("status").textContent=
+"▶️ VIDEO PLAYING - PLEASE WATCH";
+
+if(lastTime===null){
+ lastTime=player.getCurrentTime();
+}
+
+startTimer();
+
+}else{
+
+stopTimer();
+
+if(event.data===YT.PlayerState.PAUSED){
+
+lastTime=null;
+
+document.getElementById("status").textContent=
+"⏸ VIDEO PAUSED - TIMER STOPPED";
+
+}
+
+}
+
+}
+
+// ===================================
+// 30 SECOND WATCH TIMER
+// ===================================
+
+function startTimer(){
+
+if(timer || unlocked || redirecting)return;
+
+timer=setInterval(function(){
+
+if(!player || !player.getCurrentTime)return;
+
+if(player.getPlayerState()!==YT.PlayerState.PLAYING){
+
+stopTimer();
+return;
+
+}
+
+const current=player.getCurrentTime();
+
+if(lastTime===null){
+
+lastTime=current;
+return;
+
+}
+
+const difference=current-lastTime;
+
+// Count normal video playback only.
+// Skipping large portions will not count.
+
+if(difference>0 && difference<=1.3){
+
+watchSeconds+=difference;
+
+}
+
+lastTime=current;
+
+watchSeconds=Math.min(watchSeconds,30);
+
+const remaining=Math.max(
+ 0,Math.ceil(30-watchSeconds)
+);
+
+document.getElementById("clock").textContent=
+"00:"+String(remaining).padStart(2,"0");
+
+document.getElementById("progress").textContent=
+"Video Watch Time: "+
+Math.floor(watchSeconds)+
+" / 30 Seconds";
+
+if(watchSeconds>=30){
+
+unlockAndRedirect();
+
+}
+
+},500);
+
+}
+
+// ===================================
+// AUTOMATIC SHAREMODS REDIRECT
+// ===================================
+
+function unlockAndRedirect(){
+
+if(unlocked || redirecting)return;
+
+unlocked=true;
+redirecting=true;
+
+stopTimer();
+
+document.getElementById("clock").textContent=
+"UNLOCKED!";
+
+document.getElementById("status").textContent=
+"✅ 30 SECONDS COMPLETED!";
+
+document.getElementById("progress").textContent=
+"Opening Your ShareMods Link...";
+
+const link=selectedMod.download;
+
+if(!link ||
+ !link.startsWith("https://sharemods.com/") ||
+ link==="YOUR_SHAREMODS_LINK"){
+
+redirecting=false;
+
+document.getElementById("status").textContent=
+"⚠️ PLEASE ADD VALID SHAREMODS LINK";
+
+document.getElementById("progress").textContent=
+"Download link is not configured.";
+
+return;
+
+}
+
+// Open automatically in the same tab.
+// No button click required.
+
+setTimeout(function(){
+
+window.location.assign(link);
+
+},500);
+
+}
+
+// ===================================
+// SEARCH MODS
+// ===================================
 
 function searchMods(){
 
- const q=document.getElementById("search")
- .value.toLowerCase().trim();
+const q=document.getElementById("search")
+.value.toLowerCase().trim();
 
- if(!q){
-  show("home");
-  return;
- }
+if(!q){
 
- const results=mods.filter(m=>
-  (
-   m.name+" "+
-   m.category+" "+
-   m.version
-  ).toLowerCase().includes(q)
- );
-
- document.getElementById("categoryTitle").textContent=
- "SEARCH RESULTS";
-
- renderVersions(results);
- show("versions");
+show("home");
+return;
 
 }
 
-// ======================================
+const results=mods.filter(m=>
+
+(
+m.name+" "+
+m.category+" "+
+m.version
+).toLowerCase().includes(q)
+
+);
+
+document.getElementById("categoryTitle").textContent=
+"SEARCH RESULTS";
+
+renderVersions(results);
+
+show("versions");
+
+}
+
+// ===================================
 // START WEBSITE
-// ======================================
+// ===================================
 
 drawCategories();
 
 </script>
+
 </body>
 </html>
